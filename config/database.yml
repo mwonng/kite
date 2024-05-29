@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: boxkite_development
+
+test:
+  <<: *default
+  database: boxkite_test
+
+
+production:
+  <<: *default
+  database: boxkite_production
+  username: boxkite
+  password: <%= ENV["BOXKITE_DATABASE_PASSWORD"] %>
